@@ -16,11 +16,11 @@ callers:
 
 cnvkit:
   #extra: "--segment-method none"
-  relevant_genes: "DATA/TSO500_relevant_genes.txt"
+  relevant_genes: "/apps/bio/repos/Twist_DNA/DATA/TSO500_relevant_genes.txt"
 
 reference: #change to hg38
-    ref: "/data/ref_genomes/hg19/bwa/BWA_0.7.10_refseq/hg19.with.mt.fasta"
-    dict: "/data/ref_genomes/hg19/bwa/BWA_0.7.10_refseq/hg19.with.mt.dict"
+    ref: "/medstore/External_References/hg19/CHR/Homo_sapiens_sequence_hg19_CHR.fasta"
+    dict: "/medstore/External_References/hg19/CHR/Homo_sapiens_sequence_hg19_CHR.dict"
     assembly: hg19
     chrom_len:
        chr1: 249250621
@@ -49,47 +49,56 @@ reference: #change to hg38
        chrY: 59373566
 
 Background:
-    background_panel: "/projects/wp1/nobackup/ngs/utveckling/Twist_DNA_DATA/Background/background_panel.tsv"
+    background_panel: "/apps/bio/dependencies/twist_dna/Twist_DNA_pipeline/background_panel.tsv"
 
 PoN:
-    cnvkit: "DATA/cnvkit_Twist_PoN.cnn"
+    cnvkit: "/apps/bio/repos/Twist_DNA/DATA/cnvkit_Twist_PoN.cnn"
     #ONCOCNV: "DATA/ONCOCNV_Twist_PoN.txt"
     #ONCOCNV2: "DATA/ONCOCNV_Twist_PoN.Processed.txt"
-    GATK: "DATA/GATK_Twist_PoN.hdf5"
-    msisensor-pro: "DATA/Msisensor_pro_reference.list_baseline"
+    GATK: "/apps/bio/repos/Twist_DNA/DATA/GATK_Twist_PoN.hdf5"
+    msisensor-pro: "/apps/bio/repos/Twist_DNA/DATA/Msisensor_pro_reference.list_baseline"
 
 configfiles:
-    multiqc: "Config/Pipeline/multiqc_config.yaml"
-    vep: "/data/ref_genomes/VEP/"
+    multiqc: "/apps/bio/repos/Twist_DNA/Config/Pipeline/multiqc_config.yaml"
+    vep: "/apps/bio/dependencies/twist_dna/Twist_DNA_pipeline/VEP/"
 
 cnvkit:
-    relevant_genes: "DATA/TSO500_relevant_genes.txt"
+    relevant_genes: "/apps/bio/repos/Twist_DNA/DATA/TSO500_relevant_genes.txt"
 
 bed:
-    bedfile: "DATA/pool1_pool2_nochr_3c.sort.merged.padded20.hg19.210311.met.annotated.bed" #Change to HG38 coordiantes
-    intervals: "DATA/pool1_pool2_nochr_3c.sort.merged.padded20.hg19.210311.met.annotated.interval_list"
-    GATK_CNV: "DATA/pool1_pool2_nochr_3c.sort.merged.hg19.210311.annotated.preprocessed.interval_list"
-    GATK_CNV_SNPs: "DATA/gnomad_SNP_0.001_target.annotated.interval_list"
+    bedfile: "/apps/bio/repos/Twist_DNA/DATA/pool1_pool2_nochr_3c.sort.merged.padded20.hg19.210311.met.annotated.bed" #Change to HG38 coordiantes
+    intervals: "/apps/bio/repos/Twist_DNA/DATA/pool1_pool2_nochr_3c.sort.merged.padded20.hg19.210311.met.annotated.interval_list"
+    GATK_CNV: "/apps/bio/repos/Twist_DNA/DATA/pool1_pool2_nochr_3c.sort.merged.hg19.210311.annotated.preprocessed.interval_list"
+    GATK_CNV_SNPs: "/apps/bio/repos/Twist_DNA/DATA/gnomad_SNP_0.001_target.annotated.interval_list"
 
-hotspot_combined: "DATA/Hotspots_combined.csv"
+hotspot_combined: "/apps/bio/repos/Twist_DNA/DATA/Hotspots_combined.csv"
 
 geneFuse:
-    genes: "DATA/druggable.hg19.csv"
+    genes: "/apps/bio/repos/Twist_DNA/DATA/druggable.hg19.csv"
 
 TMB:
-    Artifacts: "DATA/Vardict_artifact_positions.txt"
+    Artifacts: "/apps/bio/repos/Twist_DNA/DATA/Artifact_positions.txt"
 
 mutect2:
-    GetPileupSummaries: "DATA/chr17_small_exac_common_3.vcf.gz"
+    GetPileupSummaries: "/apps/bio/repos/Twist_DNA/DATA/chr17_small_exac_common_3.vcf.gz"
 
 java:
-    SOBDetector: "/projects/wp4/nobackup/workspace/somatic_dev/singularity/SOBDetector_v1.0.1.jar"
+    SOBDetector: "/apps/bio/dependencies/twist_dna/Twist_DNA_pipeline/SOBDetector_v1.0.1.jar"
 
 singularity:
-    default: "docker://gmsuppsala/somatic:develop"
-    execute: "singularity exec -e -B /data -B /projects -B /scratch -B /data_twist_dna_cutadapt "
-    gatk4_cnv: "docker://broadinstitute/gatk:4.1.9.0"
-    vep: "docker://ensemblorg/ensembl-vep:release_99.0"
+    default: "/apps/bio/dependencies/twist_dna/singularity/somatic-develop.simg" #"docker://gmsuppsala/somatic:develop"
+    execute: "singularity exec -e -B /seqstore -B /medstore -B /apps --cleanenv " #"singularity exec -e -B /data -B /projects -B /scratch -B /data_twist_dna_cutadapt "
+    gatk4_cnv: "/apps/bio/dependencies/twist_dna/singularity/gatk-4.1.9.0.simg" #"docker://broadinstitute/gatk:4.1.9.0"
+    vep: "/apps/bio/dependencies/twist_dna/singularity/ensembl-vep-release_99.0.simg" #"docker://ensemblorg/ensembl-vep:release_99.0"
 
 cartool:
     cov: "100 200 1000"
+
+# FIX THIS!!
+#samples: # path to samples.tsv 
+#runfolder_path: # path to runfolder
+#units: # path to units.tsv 
+#samplesheet: #path to sample sheet 
+bcl2fastq_version: 2.17.1.14
+skip_chrs:
+ - "MT"
