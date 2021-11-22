@@ -23,7 +23,7 @@
 @SQ	SN:chr22	LN:51304566	UR:file:/bubo/home/h20/elinfalk/data/hg19/genome_fasta/hg19.with.mt.fasta	M5:a718acaa6135fdca8357d5bfe94211dd
 @SQ	SN:chrX	LN:155270560	UR:file:/bubo/home/h20/elinfalk/data/hg19/genome_fasta/hg19.with.mt.fasta	M5:7e0e2e580297b7764e31dbc80c2540dd
 @SQ	SN:chrY	LN:59373566	UR:file:/bubo/home/h20/elinfalk/data/hg19/genome_fasta/hg19.with.mt.fasta	M5:1e86411d73e6f00a10590f976be01623
-@SQ	SN:chrM	LN:16571	UR:file:/bubo/home/h20/elinfalk/data/hg19/genome_fasta/hg19.with.mt.fasta	M5:d2ed829b8a1628d16cbeee88e88e39eb
+@SQ	SN:chrM	LN:16569	UR:file:/bubo/home/h20/elinfalk/data/hg19/genome_fasta/hg19.with.mt.fasta	M5:d2ed829b8a1628d16cbeee88e88e39eb
 chr1	934684	934684	-	HES4_CNV1_NM_XXX
 chr1	934735	934735	-	HES4_CNV2_NM_XXX
 chr1	934770	934770	-	HES4_CNV3_NM_XXX
