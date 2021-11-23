@@ -99,6 +99,6 @@ cartool:
 #runfolder_path: # path to runfolder
 #units: # path to units.tsv 
 #samplesheet: #path to sample sheet 
-bcl2fastq_version: 2.17.1.14
+bcl2fastq_version: ""
 skip_chrs:
  - "MT"
