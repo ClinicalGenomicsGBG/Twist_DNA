@@ -7,7 +7,7 @@ demultiplex_output = "fastq_temp"
 
 
 include: "../rules/Alignment/index_bam.smk"
-include: "../rules/Fastq/demultiplex.smk"
+#include: "../rules/Fastq/demultiplex.smk"
 
 
 if config.get("move_umi", True):
